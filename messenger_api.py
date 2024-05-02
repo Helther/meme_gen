@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import requests
 import os
 from enum import Enum
+import json
 
 """
 In order to add new API update API enum and create_api_from_config factory
@@ -9,9 +10,10 @@ with newly created class
 """
 class API(Enum):
     mattermost = 0
+    telegram = 1
 
 
-class Messenger(ABC):
+class MessengerAPI(ABC):
 
     def __init__(self, server_url) -> None:
         self.server_url = server_url
@@ -32,10 +34,10 @@ class Messenger(ABC):
         pass
 
 
-class MattermostApi(Messenger):
+class MattermostAPI(MessengerAPI):
         
     def __init__(self, server_url) -> None:
-        Messenger.__init__(self, server_url)
+        MessengerAPI.__init__(self, server_url)
         self.token = None
         self.file_ids = []
 
@@ -80,8 +82,46 @@ class MattermostApi(Messenger):
             raise Exception("Falied to post msg")
 
 
-def create_api_from_config(api_config, server_url: str) -> Messenger:
+class TelegramAPI(MessengerAPI):
+    
+    def __init__(self, server_url) -> None:
+        MessengerAPI.__init__(self, server_url)
+        self.file_paths = []
+
+    def login(self, auth_info) -> None:
+        pass
+
+    def upload_files(self, file_paths: list[str], chat_info) -> None:
+        self.file_paths = file_paths
+
+    def post_message(self, chat_info, message: str) -> None:
+        if len(self.file_paths) == 1:
+            url = self.server_url + f"/sendPhoto?chat_id={int(chat_info)}?caption={message}"
+            resp: requests.Response = requests.post(url, files={"photo": open(file, "rb") for file in self.file_paths})
+            print(resp.json())
+            if not resp.ok:
+                raise Exception("Falied to send photo")
+
+        elif len(self.file_paths) > 1:
+            url = self.server_url + "/sendMediaGroup"
+            media_json = json.dumps([{"type": "photo", "media": f"attach://{os.path.basename(file)}"} for file in self.file_paths])
+            data = {"chat_id": int(chat_info), "media": media_json}
+            resp: requests.Response = requests.post(url, data=data, files={os.path.basename(file): open(file, "rb") for file in self.file_paths})
+            print(resp.json())
+            if not resp.ok:
+                raise Exception("Falied to send media")
+        # send prompt
+        url = self.server_url + "/sendMessage"
+        data = {"chat_id": int(chat_info), "text": message}
+        resp: requests.Response = requests.post(url, json=data)
+        if not resp.ok:
+            raise Exception("Falied to send caption")
+
+
+def create_api_from_config(api_config, server_url: str) -> MessengerAPI:
     if api_config == API.mattermost.name:
-        return MattermostApi(server_url)
+        return MattermostAPI(server_url)
+    if api_config == API.telegram.name:
+        return TelegramAPI(server_url)
     
     raise Exception("Invalid messenger config")

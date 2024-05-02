@@ -8,7 +8,7 @@ There are two modes for providing a prompt to it:
 
 There is also an option to continously update reference image with last produced image for image evolution effect.
 
-After the inference has been completed, resulting images are posted via configured supported messenger API.
+After the inference has been completed, resulting images are posted via configured supported messenger API. Supported API's are telegram and mattermost. For telegram you have to provide bot token in server_url and have it present in specified chat, for mattermost you have to provide user login and password through witch outputs would be send.
 
 Inference job sheduling and everything else is configured in the config file (the process of running the script is described below)
 
@@ -57,8 +57,6 @@ Result in the messenger:
 
 <img src="resources/ref_output.jpg" width="300"/>
 
-## TODO
-* add telegram api
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

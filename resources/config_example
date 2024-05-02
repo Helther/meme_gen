@@ -11,6 +11,7 @@ IMAGES_NUM = 1
 # messenger settings
 # check out available enum names in messenger_api.py
 API_TYPE = mattermost
+# for telegram api include bot token into url, like so: https://api.telegram.org/bot<TOKEN> 
 SERVER_URL = some_url
 AUTH_LOGIN = user_login_or_email
 AUTH_PASSW = password
