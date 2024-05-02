@@ -32,7 +32,7 @@ pip install -r ./requirements.txt
 
 ## Usage
 Create configuration file named "config" inside script directory
-and set user parameters. Use this [example](config_example) as reference.
+and set user parameters. Use this [example](resources/config_example) as reference.
 
 If you want to use another image as reference, then specify it's path relative to the script folder and use a prompt with a following format:
 ```
