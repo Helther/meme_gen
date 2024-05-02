@@ -21,7 +21,6 @@ job.start_day = config.job_day
 job.at(config.job_time)
 job.do(job_func)
 print("started")
-job.run()
 
 while True:
     schedule.run_pending()

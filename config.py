@@ -32,7 +32,7 @@ class Config():
             if self.job_interval < 1:
                 self.job_interval = 1
             self.job_unit = config[config_section_name].get("JOB_UNIT", "weeks")
-            self.job_day = config[config_section_name].get("JOB_START_DAY", "wednesday")
+            self.job_day = config[config_section_name].get("JOB_START_DAY", "wednesday" if self.job_unit == "weeks" else None)
             self.job_time = config[config_section_name].get("JOB_TIME", "08:00")
 
 

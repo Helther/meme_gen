@@ -98,7 +98,6 @@ class TelegramAPI(MessengerAPI):
         if len(self.file_paths) == 1:
             url = self.server_url + f"/sendPhoto?chat_id={int(chat_info)}?caption={message}"
             resp: requests.Response = requests.post(url, files={"photo": open(file, "rb") for file in self.file_paths})
-            print(resp.json())
             if not resp.ok:
                 raise Exception("Falied to send photo")
 
@@ -107,7 +106,6 @@ class TelegramAPI(MessengerAPI):
             media_json = json.dumps([{"type": "photo", "media": f"attach://{os.path.basename(file)}"} for file in self.file_paths])
             data = {"chat_id": int(chat_info), "media": media_json}
             resp: requests.Response = requests.post(url, data=data, files={os.path.basename(file): open(file, "rb") for file in self.file_paths})
-            print(resp.json())
             if not resp.ok:
                 raise Exception("Falied to send media")
         # send prompt
