@@ -1,0 +1,30 @@
+[Main]
+# boolean, if True inference will use previous generated output as new reference
+UPDATE_REFERENCE_IMAGE = False
+# path to an image relative to script path, if it's not specified will just use promt
+REFERENCE_IMAGE_PATH = path/to/image
+# prompt, describing an image to generate
+PROMT = USER: <image>\ndescribe what is depicted in the picture and what is the text?\nASSISTANT:
+# batch size of images genereated
+IMAGES_NUM = 1
+
+# messenger settings
+# check out available enum names in messenger_api.py
+API_TYPE = mattermost
+SERVER_URL = some_url
+AUTH_LOGIN = user_login_or_email
+AUTH_PASSW = password
+CHAT_ID = id_string_for_a_channel
+
+# job sheduling settings
+# shedule python module is used here
+# to find out all supported values in th econfig check out module docs: https://schedule.readthedocs.io/en/stable/
+
+# number of units in interval
+JOB_INTERVAL = 1
+# string values 
+JOB_UNIT = "weeks"
+# if unit is week then day may be specified
+JOB_START_DAY = "wednesday"
+# time in day when execute the job
+JOB_TIME = 08:00
