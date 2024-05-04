@@ -7,6 +7,9 @@ REFERENCE_IMAGE_PATH = path/to/image
 PROMT = USER: <image>\ndescribe what is depicted in the picture and what is the text?\nASSISTANT:
 # batch size of images genereated
 IMAGES_NUM = 1
+# operation mode - if enabled will create new image directy from reference with prompt steering
+# otherwise will generate from reference text description 
+IMG_TO_IMG = False
 
 # messenger settings
 # check out available enum names in messenger_api.py

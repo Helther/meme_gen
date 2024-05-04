@@ -21,6 +21,7 @@ class Config():
             self.image_num_to_generate = int(config[config_section_name].get("IMAGES_NUM", 1))
             if self.image_num_to_generate < 1:
                 self.image_num_to_generate = 1
+            self.enable_img_to_img = config[config_section_name].get("IMG_TO_IMG", "").lower() == "true"
 
             self.messenger_api = config[config_section_name]["API_TYPE"]
             self.server_url = config[config_section_name]["SERVER_URL"]
