@@ -9,11 +9,11 @@ There are three modes for providing a prompt to it:
 
 There is also an option to continously update reference image with last produced image for image evolution effect.
 
-After the inference has been completed, resulting images are posted via configured supported messenger API. Supported API's are telegram and mattermost. For telegram you have to provide bot token in server_url and have it present in specified chat, for mattermost you have to provide user login and password through witch outputs would be send.
+After the inference has been completed, resulting images are posted via configured supported messenger API. Supported API's are telegram and mattermost. For telegram you have to provide bot token in SERVER_URL and have it present in specified chat, for mattermost you have to provide user login AUTH_LOGIN and password AUTH_PASSW through which outputs would be send, in the config file.
 
 Inference job sheduling and everything else is configured in the config file (the process of running the script is described below)
 
-Inference times on a test hardware:
+Inference times on a test hardware for a single image:
 - for text-to-image: gpu (rtx3060) ~ 1 min, cpu (i7-4770) ~ 12 min (depends on number of images).
 - for image-to-image: gpu (rtx3060) ~ 15 sec, cpu (i7-4770) ~ 25 sec (depends on number of images).
 

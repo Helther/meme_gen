@@ -27,8 +27,8 @@ CHAT_ID = id_string_for_a_channel
 # number of units in interval
 JOB_INTERVAL = 1
 # string values 
-JOB_UNIT = "weeks"
+JOB_UNIT = weeks
 # if unit is week then day may be specified
-JOB_START_DAY = "wednesday"
+JOB_START_DAY = wednesday
 # time in day when execute the job
 JOB_TIME = 08:00

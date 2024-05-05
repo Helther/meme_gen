@@ -97,8 +97,6 @@ else:
     pipe = DiffusionPipeline.from_pretrained(SD_MODEL_ID, torch_dtype=torch.float16 if get_available_device() == "cuda" else None, use_safetensors=True, variant="fp16", cache_dir=MODELS_PATH)
     pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 
-if get_available_device() == "cpu":
-    pipe.enable_model_cpu_offload()
 pipe.to(get_available_device())
 compel = Compel(tokenizer=pipe.tokenizer, text_encoder=pipe.text_encoder)
 
