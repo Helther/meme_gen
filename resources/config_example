@@ -18,6 +18,7 @@ API_TYPE = mattermost
 SERVER_URL = some_url
 AUTH_LOGIN = user_login_or_email
 AUTH_PASSW = password
+# string with chat id or multiple ids, separated by comma
 CHAT_ID = id_string_for_a_channel
 
 # job sheduling settings

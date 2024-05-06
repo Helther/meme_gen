@@ -68,8 +68,8 @@ def infer() -> tuple[list[str], str]:
 def post_outputs(files: list[str], promt: str) -> None:
     api = create_api_from_config(config.messenger_api, config.server_url)
     api.login((config.auth_login, config.auth_pass))
-    api.upload_files(files, config.chat_id)
-    api.post_message(config.chat_id, promt)
+    api.upload_files(files, config.chat_ids)
+    api.post_message(config.chat_ids, promt)
 
 
 def main() -> None:

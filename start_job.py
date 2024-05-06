@@ -10,7 +10,7 @@ def job_func() -> None:
     retry_num = 0
     result = 1
     while result != 0 and retry_num < JOB_RETRY_NUM_MAX:
-        process:subprocess.CompletedProcess = subprocess.run("python ./infer.py", shell=True, check=False)
+        process:subprocess.CompletedProcess = subprocess.run("python infer.py", shell=True, check=False)
         result = process.returncode
         retry_num += 1
 

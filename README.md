@@ -1,5 +1,5 @@
 # Meme Generator
-App for sheduled picture generation and auto posting in a messenger chat.
+App for sheduled picture generation and auto posting in a specified messenger chat.
 
 It uses Stable Diffusion model for image generation.
 There are three modes for providing a prompt to it:
@@ -45,18 +45,19 @@ ASSISTANT:
 ```
 Alternatively you can leave image path unspecified and just provide a prompt to Stable Diffusion with an image description.
 
+The script is expected to be run from configured environment and from project directory.
+
 Run start_job.py file from the required environment, for example - from repo directory:
 ```
 python start_job.py
 ```
 
 ## Example
-Configure to describe the reference image and send it to Mattermost chat
-Provide the following reference image:
+Configure to describe the reference image and send it to Mattermost chat. Let's Provide the following reference image:
 
 ![](resources/reference.jpg)
 
-Result in the messenger:
+Result in the messenger would look something like:
 
 <img src="resources/ref_output.jpg" width="300"/>
 

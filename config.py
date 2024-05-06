@@ -27,7 +27,12 @@ class Config():
             self.server_url = config[config_section_name]["SERVER_URL"]
             self.auth_login = config[config_section_name]["AUTH_LOGIN"]
             self.auth_pass = config[config_section_name]["AUTH_PASSW"]
-            self.chat_id = config[config_section_name]["CHAT_ID"]
+            chat_id_str = config[config_section_name]["CHAT_ID"]
+            self.chat_ids = set()
+            chat_id_str = chat_id_str.replace(" ", "")
+            ids = chat_id_str.split(",")
+            for chat_id in ids:
+                self.chat_ids.add(chat_id)
 
             self.job_interval = int(config[config_section_name].get("JOB_INTERVAL", 1))
             if self.job_interval < 1:
